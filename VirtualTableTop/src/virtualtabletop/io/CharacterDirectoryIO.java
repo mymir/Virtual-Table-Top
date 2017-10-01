@@ -14,12 +14,13 @@ public class CharacterDirectoryIO {
 		Scanner fileReader = new Scanner(new FileInputStream(fileName));
     		CharacterDirectory characters = new CharacterDirectory();
     		while (fileReader.hasNextLine()) {
-    		try {
-                Character ch = processCharacter(fileReader.nextLine());
-                characters.addCharacter(ch);
-            } catch (IllegalArgumentException e) {
-                //skip the line
-            }
+	    		try {
+	                Character ch = processCharacter(fileReader.nextLine());
+	                characters.addCharacter(ch);
+	            } catch (IllegalArgumentException e) {
+	                //skip the line
+	            		System.out.println("Nice try");
+	            }
 		}
     	fileReader.close();
     	return characters;
@@ -30,28 +31,29 @@ public class CharacterDirectoryIO {
 	 * @return s student object so the read method can process it
 	 */
 	private static Character processCharacter(String nextLine) {
+		Character c = null;
+		Scanner l = new Scanner(nextLine);
+		l.useDelimiter(",");
 		try{
-			Character c = null;
-			Scanner l = new Scanner(nextLine);
-			l.useDelimiter(",");
 			String name = l.next();
-			int armourClass = l.nextInt();
-			int hitPoints = l.nextInt();
-			int currentHitPoints = l.nextInt();
-			int strength = l.nextInt();
-			
-			if (l.hasNextInt()) {
-				int challengeRating = l.nextInt();
+			int armourClass = Integer.parseInt(l.next());
+			int hitPoints = Integer.parseInt(l.next());
+			int currentHitPoints = Integer.parseInt(l.next());
+			int strength = Integer.parseInt(l.next());
+			String nextOne = l.next();
+			if (nextOne.length() == 1) {
+				int challengeRating = Integer.parseInt(nextOne);
 				c = new Enemy(name, armourClass, hitPoints, currentHitPoints, strength, challengeRating);
 			}
-			else if(l.hasNext()) {
-				String weapon = l.next();
+			else {
+				String weapon = nextOne;
 				c = new PlayerCharacter(name, armourClass, hitPoints, currentHitPoints, strength, weapon);
 			}
 			l.close();
 
 			return c;
 		} catch (Exception e) {
+			System.out.println("why?");
 			throw new IllegalArgumentException();
 		}
 

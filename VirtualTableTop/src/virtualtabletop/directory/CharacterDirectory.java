@@ -33,19 +33,19 @@ public class CharacterDirectory {
 	}
 	
 	public void addCharacter(Character c) {
-		if (cd.size() != 0) {
-			for(Character ch : cd) {
-				for(Character ch2 : cd) {
-					if (ch.getInitiative() >= ch2.getInitiative()) {
-						cd.add(cd.indexOf(ch2)+1, ch);
-					}
-					else {
-						cd.add(cd.indexOf(ch2), ch);
-					}
-				}
-			}
-			
-		}
+//		if (cd.size() != 0) {
+//			for(Character ch : cd) {
+//				for(Character ch2 : cd) {
+//					if (ch.getInitiative() >= ch2.getInitiative()) {
+//						cd.add(cd.indexOf(ch2)+1, ch);
+//					}
+//					else {
+//						cd.add(cd.indexOf(ch2), ch);
+//					}
+//				}
+//			}
+//			
+//		}
 		cd.add(c);
 	}
 	

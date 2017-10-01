@@ -4,7 +4,12 @@
 package virtualtabletop.ui;
 import virtualtabletop.io.CharacterDirectoryIO;
 import virtualtabletop.character.Character;
+import virtualtabletop.character.Enemy;
+import virtualtabletop.dice.Dice;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -15,7 +20,7 @@ import virtualtabletop.directory.CharacterDirectory;
  * @author rafaelzingle
  *
  */
-public class TableTopGUI extends JFrame {
+public class TableTopGUI extends JFrame implements ActionListener{
 	//GUI set-up
 	private static final int WINDOW_WIDTH = 600;
 	private static final  int WINDOW_HEIGHT = 300;
@@ -23,11 +28,11 @@ public class TableTopGUI extends JFrame {
 	//functionality
 	private static JButton attack;
 	private static JButton rollInitiative;
-	private static JComboBox weapon;
 	private static JComboBox target;
 	private static JTextArea characters; 
+	private static JLabel init;
 	//association
-	private CharacterDirectory characterList = new CharacterDirectory();
+	private CharacterDirectory characterList;
 	private CharacterDirectoryIO characterIo = new CharacterDirectoryIO();
 
 	/**
@@ -45,27 +50,42 @@ public class TableTopGUI extends JFrame {
 		
 		rollInitiative = new JButton();
 		rollInitiative.setText("Roll Initiative");
+		rollInitiative.addActionListener(this);
 		rollInitiative.setVisible(true);
 		
-		weapon = new JComboBox();
-		weapon.setVisible(true);
+		init = new JLabel(); 
+		init.setText("--");
 		
 		target = new JComboBox();
 		try {
-			characterIo.readCharacterFile("match-directory/match_yourname.txt");
+			characterList = CharacterDirectoryIO.readCharacterFile("match-directory/match_yourname.txt");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		ArrayList<Character> list = characterList.getCharacterDirectory();
+		target.addItem("Select A Target");
 		for (Character c: list) {
-			target.addItem(c.getName());
+			if (c instanceof Enemy) {
+				target.addItem(c.getName());
+			}
 		}
+		
+		characters = new JTextArea(); 
+		String setTextString = "Name\tHealth Points\tArmour Class\n";
+		for (Character c: list) {
+			setTextString += c.getName() + "\t" + c.getHitPoints() + "/" + c.getCurrentHitPoints() + "\t" + c.getArmourClass() + "\n";
+		}
+		characters.setText(setTextString);
+		
 		target.setVisible(true);
 		//add components
 		panel.add(attack);
-		panel.add(target);
 		panel.add(rollInitiative);
+		panel.add(init);
+		panel.add(target);
+		panel.add(characters);
 		contentPane.add(panel);
 		
 		//set-up window
@@ -78,6 +98,13 @@ public class TableTopGUI extends JFrame {
 	
 	public static void main(String[] args) {
 		TableTopGUI gui = new TableTopGUI();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Dice die = new Dice(20); 
+		int roll = die.roll();
+		init.setText(Integer.toString(roll));
 	}
 
 }
