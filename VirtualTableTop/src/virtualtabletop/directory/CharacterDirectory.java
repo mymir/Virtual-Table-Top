@@ -44,8 +44,9 @@ public class CharacterDirectory {
 					}
 				}
 			}
-			cd.add(c);
+			
 		}
+		cd.add(c);
 	}
 	
 	public ArrayList<Character> getCharacterDirectory(){
