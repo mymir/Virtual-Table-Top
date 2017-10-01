@@ -1,5 +1,6 @@
 package virtualtabletop.directory;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import virtualtabletop.character.Character;
@@ -59,5 +60,10 @@ public class CharacterDirectory {
 		Dice d = new Dice(20);
 
 		c.setInitiative(d.roll());
+	}
+	
+	public String getCharacterInfo(){
+		String message = "Initiative\tname\";
+		for(ch : cd)
 	}
 }
