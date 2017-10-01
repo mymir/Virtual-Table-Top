@@ -22,6 +22,9 @@ public class InitiativeTracker {
 	}
 	
 	public void processTurn() {
+		while(!isFinished().equalsIgnoreCase("continue")){
+			
+		}
 	}
 	public String isFinished() {
 		int enemy = 0;

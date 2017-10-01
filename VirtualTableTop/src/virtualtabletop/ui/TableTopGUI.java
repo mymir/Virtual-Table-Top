@@ -22,7 +22,7 @@ import virtualtabletop.directory.CharacterDirectory;
  */
 public class TableTopGUI extends JFrame implements ActionListener{
 	//GUI set-up
-	private static final int WINDOW_WIDTH = 600;
+	private static final int WINDOW_WIDTH = 550;
 	private static final  int WINDOW_HEIGHT = 300;
 	private static JPanel panel;
 	//functionality
