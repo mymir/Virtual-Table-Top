@@ -21,4 +21,16 @@ public class Enemy extends Character {
 	public void setChallengeRating(int challengeRating) {
 		this.challengeRating = challengeRating;
 	}
+	
+	public int getDiceSides(int challengeRating) {
+		if (challengeRating == 1) {
+			return 4;
+		} else if (challengeRating == 2) {
+			return 6;
+		} else if (challengeRating == 3) {
+			return 8;
+		} else {
+			return 0;
+		}
+	}
 }
