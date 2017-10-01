@@ -11,7 +11,7 @@ public abstract class Character {
 	private String weapon;
 	
 	
-	public Character(String name, int armourClass,int hitPoints, int strength, int initiativeBonus, String weapon) {
+	public Character(String name, int armourClass,int hitPoints, int strength, int initiativeBonus) {
 		this.setName(name);
 		this.setArmourClass(armourClass);
 		this.setHitPoints(hitPoints);

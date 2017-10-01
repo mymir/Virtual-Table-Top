@@ -1,10 +1,8 @@
-name ac hp str initb
-Waldo the Weary,
-Alfred the Affable, 
-Benedict the Beneficent,
-Carson the Careful,
-Dottie the Dangerous,
-Linda the Lethargic,
-Eric the Efficient, 
+Goblin One,5,10,2,1
+Goblin Two,5,10,2,1
+Orc One,10,12,0,3
+Waldo the Weary,9,11,2,short sword
+Benedict the Beneficent,10,14,2,long sword
+Dottie the Dangerous,8,10,4,dagger
 
 
