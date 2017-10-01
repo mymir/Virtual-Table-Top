@@ -22,6 +22,6 @@ public class Dice {
 	}
 	
 	public int roll(int sides) {
-		return (int) (Math.random()*sides);
+		return (int) (Math.random()*sides) + 1;
 	}
 }
