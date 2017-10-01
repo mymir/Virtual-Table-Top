@@ -12,8 +12,8 @@ public class Dice {
 	}
 	
 	public void setSides(int sides) throws IllegalArgumentException {
-		if (sides == 4 || sides == 6 || sides == 10 ||
-			sides == 12 || sides == 20) {
+		if (sides == 4 || sides == 6 || sides == 8 ||
+			sides == 10 || sides == 12 || sides == 20) {
 			this.sides = sides;
 		}
 		else {
