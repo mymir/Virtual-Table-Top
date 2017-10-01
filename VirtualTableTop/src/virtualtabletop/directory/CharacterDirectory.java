@@ -45,6 +45,7 @@ public class CharacterDirectory {
 					}
 				}
 			}
+			cd.add(c);
 		}
 	}
 	
