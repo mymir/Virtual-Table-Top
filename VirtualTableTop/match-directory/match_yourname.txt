@@ -1,0 +1,10 @@
+name ac hp str initb
+Waldo the Weary,
+Alfred the Affable, 
+Benedict the Beneficent,
+Carson the Careful,
+Dottie the Dangerous,
+Linda the Lethargic,
+Eric the Efficient, 
+
+
