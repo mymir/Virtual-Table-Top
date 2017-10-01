@@ -1,6 +1,5 @@
 package virtualtabletop.directory;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import virtualtabletop.character.Character;
