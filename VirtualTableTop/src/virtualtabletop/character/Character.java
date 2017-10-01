@@ -6,14 +6,26 @@ public abstract class Character {
 	private int hitPoints;
 	private int currentHitPoints;
 	private int strength;
+	private int initiative;
+	private int initiativeBonus;
+	private String weapon;
 	
 	
-	public Character(String name, int armourClass,int hitPoints, int currentHitPoints, int strength) {
+	public Character(String name, int armourClass,int hitPoints, int strength, int initiativeBonus, String weapon) {
 		this.setName(name);
 		this.setArmourClass(armourClass);
 		this.setHitPoints(hitPoints);
-		this.setCurrentHitPoints(currentHitPoints);
 		this.setStrength(strength);
+		this.setinitiativeBonus(initiativeBonus);
+		currentHitPoints = hitPoints;
+	}
+
+	private void setinitiativeBonus(int initiativeBonus) {
+		initiativeBonus = initiativeBonus;
+	}
+	
+	private int getinitiativeBonus(int initiativeBonus) {
+		return initiativeBonus;
 	}
 
 	/**
@@ -69,8 +81,15 @@ public abstract class Character {
 	/**
 	 * @param currentHitPoints the currentHitPoints to set
 	 */
-	public void setCurrentHitPoints(int currentHitPoints) {
-		this.currentHitPoints = currentHitPoints;
+	public void reduceCurrentHitPoints(int change) {
+		currentHitPoints = currentHitPoints - change;
+	}
+	
+	/**
+	 * @param currentHitPoints the currentHitPoints to set
+	 */
+	public void addCurrentHitPoints(int change) {
+		currentHitPoints = currentHitPoints + change;
 	}
 
 	/**
@@ -85,6 +104,46 @@ public abstract class Character {
 	 */
 	public void setStrength(int strength) {
 		this.strength = strength;
+	}
+	
+	/**
+	 * @return the strength
+	 */
+	public int getInitiative() {
+		return initiative;
+	}
+
+	/**
+	 * @param strength the strength to set
+	 */
+	public void setInitiative(int initiative) {
+		initiative = initiative + initiativeBonus;
+	}
+	
+	/**
+	 * @return the strength
+	 */
+	public String getWeapon() {
+		return weapon;
+	}
+	
+	public int getWeaponDice(String weaponType) {
+		if (weaponType.equals("dagger") || weaponType.equals("knife")) {
+			
+		} else if (weaponType.equals("short sword") || weaponType.equals("short spear") 
+				|| weaponType.equals("axe")) {
+			
+		} else if (weaponType.equals("sword")) {
+			
+		}
+		return 3;
+	}
+
+	/**
+	 * @param strength the strength to set
+	 */
+	public void setWeapon(int initiative) {
+		initiative = initiative + initiativeBonus;
 	}
 
 }
