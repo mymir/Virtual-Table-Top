@@ -4,7 +4,7 @@ public class Enemy extends Character {
 	private int challengeRating;
 
 	public Enemy(String name, int armourClass,int hitPoints, int strength, int initiativeBonus, int challengeRating) {
-		super(name, armourClass, hitPoints, strength, initiativeBonus, null);
+		super(name, armourClass, hitPoints, strength, initiativeBonus);
 		setChallengeRating(challengeRating);
 	}
 
