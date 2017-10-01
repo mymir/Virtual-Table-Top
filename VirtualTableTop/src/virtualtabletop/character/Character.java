@@ -129,14 +129,16 @@ public abstract class Character {
 	
 	public int getWeaponDice(String weaponType) {
 		if (weaponType.equals("dagger") || weaponType.equals("knife")) {
-			
+			return 4;
 		} else if (weaponType.equals("short sword") || weaponType.equals("short spear") 
 				|| weaponType.equals("axe")) {
-			
-		} else if (weaponType.equals("sword")) {
-			
+			return 6;
+		} else if (weaponType.equals("long sword") || weaponType.equals("long spear") || weaponType.equals("battle axe")) {
+			return 8;
 		}
-		return 3;
+		else {
+			return 0;
+		}
 	}
 
 	/**
