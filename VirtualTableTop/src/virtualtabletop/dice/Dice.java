@@ -21,7 +21,7 @@ public class Dice {
 		}
 	}
 	
-	public int roll(int sides) {
-		return (int) (Math.random()*sides) + 1;
+	public int roll() {
+		return (int) (Math.random()*this.getSides()) + 1;
 	}
 }
