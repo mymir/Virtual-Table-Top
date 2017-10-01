@@ -20,11 +20,11 @@ public abstract class Character {
 		currentHitPoints = hitPoints;
 	}
 
-	private void setinitiativeBonus(int initiativeBonus) {
-		initiativeBonus = initiativeBonus;
+	public void setinitiativeBonus(int initiativeBonus) {
+		this.initiativeBonus = initiativeBonus;
 	}
 	
-	private int getinitiativeBonus(int initiativeBonus) {
+	public int getinitiativeBonus() {
 		return initiativeBonus;
 	}
 
@@ -117,7 +117,7 @@ public abstract class Character {
 	 * @param strength the strength to set
 	 */
 	public void setInitiative(int initiative) {
-		initiative = initiative + initiativeBonus;
+		this.initiative = initiative + initiativeBonus;
 	}
 	
 	/**
