@@ -16,8 +16,10 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import virtualtabletop.directory.CharacterDirectory;
-/**
- * @author rafaelzingle
+/**A JFrame panel that lets a user interact with the program. 
+ * 
+ * @author Rafael Zingle
+ * @author Madison Hurd
  *
  */
 public class TableTopGUI extends JFrame implements ActionListener{
@@ -34,8 +36,12 @@ public class TableTopGUI extends JFrame implements ActionListener{
 	//association
 	private CharacterDirectory characterList;
 	private CharacterDirectoryIO characterIo = new CharacterDirectoryIO();
+	//state tracker
+	private Character currentPlayer;
+	private Character currentTarget;
+	private boolean targetSelected = false;
 
-	/**
+	/**Sets up the GUI's components and adds them to the pane.
 	 * 
 	 */
 	public TableTopGUI() {
@@ -95,16 +101,33 @@ public class TableTopGUI extends JFrame implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
-	
-	public static void main(String[] args) {
-		TableTopGUI gui = new TableTopGUI();
-	}
 
+	/**Overrides the actionPreformed method to give the GUI components
+	 * functionality. 
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Dice die = new Dice(20); 
-		int roll = die.roll();
-		init.setText(Integer.toString(roll));
+		if (e.getSource() == rollInitiative) {
+			Dice die = new Dice(20); 
+			int roll = die.roll();
+			init.setText(Integer.toString(roll));
+		} else if (e.getSource() == attack) {
+			if (targetSelected) {
+				//attack
+			} else {
+				//pop up saying "No target selected!"
+			}
+		}
+
+	}
+	
+	/**The main method that allows the program to run. 
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		TableTopGUI gui = new TableTopGUI();
 	}
 
 }
