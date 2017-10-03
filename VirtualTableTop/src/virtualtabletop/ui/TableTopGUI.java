@@ -75,7 +75,7 @@ public class TableTopGUI extends JFrame implements ActionListener{
 		characters = new JTextArea(); 
 		String setTextString = "Name\tHealth Points\tArmour Class\n";
 		for (Character c: list) {
-			setTextString += c.getName() + "\t" + c.getHitPoints() + "/" + c.getCurrentHitPoints() + "\t" + c.getArmourClass() + "\n";
+			setTextString += c.getName() + "\t" + c.getHitPoints() + "/" + c.getCurrentHitPoints() + "\t" + c.getArmorClass() + "\n";
 		}
 		characters.setText(setTextString);
 		

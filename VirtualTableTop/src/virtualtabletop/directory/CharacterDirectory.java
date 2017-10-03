@@ -67,7 +67,7 @@ public class CharacterDirectory {
 		String message = "Initiative\tName\tHit Points\tArmor Class\n";
 		for(Character ch : cd) {
 			message += ch.getInitiative() + "\t" + ch.getName() + "\t" + ch.getCurrentHitPoints() + "/" + ch.getHitPoints() + "\t"
-					+ ch.getArmourClass() + "\n";
+					+ ch.getArmorClass() + "\n";
 		}
 		return message;
 	}

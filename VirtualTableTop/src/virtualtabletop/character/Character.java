@@ -1,151 +1,171 @@
 package virtualtabletop.character;
 
+/**An abstract class that that holds character information.
+ *
+ * @author Rafael Zingle
+ * @author Madison Hurd
+ */
 public abstract class Character {
+	
+	/** The Character's name. */
 	private String name;
-	private int armourClass;
+	/** The Character's armourClass. */
+	private int armorClass;
+	/** The Character's hitPoints. */
 	private int hitPoints;
+	/** The Character's currentHitPoints. */
 	private int currentHitPoints;
+	/** The Character's strength. */
 	private int strength;
+	/** The Character's initiative. */
 	private int initiative;
+	/** The Character's initiativeBonus. */
 	private int initiativeBonus;
+	/** The Character's weapon. */
 	private String weapon;
 	
-	
-	public Character(String name, int armourClass,int hitPoints, int strength, int initiativeBonus) {
+	/**Creates a new Character.
+	 * 
+	 * @param name, the name of the character
+	 * @param armourClass, the character's armor class
+	 * @param hitPoints, the character's hit points
+	 * @param strength, the character's strength
+	 * @param initiativeBonus, the character's initiative bonus
+	 */
+	public Character(String name, int armorClass,int hitPoints, int strength, int initiativeBonus) {
 		this.setName(name);
-		this.setArmourClass(armourClass);
+		this.setArmorClass(armorClass);
 		this.setHitPoints(hitPoints);
 		this.setStrength(strength);
 		this.setinitiativeBonus(initiativeBonus);
 		currentHitPoints = hitPoints;
 	}
 
+	/**Sets the Character's initiative bonus.
+	 * 
+	 * @param initiativeBonus, the character's initiative bonus
+	 */
 	public void setinitiativeBonus(int initiativeBonus) {
 		this.initiativeBonus = initiativeBonus;
 	}
 	
+	/**Returns the character's initiative bonus.
+	 * 
+	 * @return initiativeBonus, the character's initiative bonus
+	 */
 	public int getinitiativeBonus() {
 		return initiativeBonus;
 	}
 
-	/**
-	 * @return the name
+	/**Returns the character's name.
+	 * 
+	 * @return name, the character's name
 	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param name the name to set
+	/**Sets the character's name.
+	 * 
+	 * @param name, the character's name
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 
-	/**
-	 * @return the armourClass
+	/**Returns the character's armor class.
+	 * 
+	 * @return armorClass, the character's armor class
 	 */
-	public int getArmourClass() {
-		return armourClass;
+	public int getArmorClass() {
+		return armorClass;
 	}
 
-	/**
-	 * @param armourClass the armourClass to set
+	/**Sets the character's armor class.
+	 * 
+	 * @param armourClass, the character's armor class
 	 */
-	public void setArmourClass(int armourClass) {
-		this.armourClass = armourClass;
+	public void setArmorClass(int armorClass) {
+		this.armorClass = armorClass;
 	}
 
-	/**
-	 * @return the hitPoints
+	/**Returns the character's hit points.
+	 * 
+	 * @return hitPoints, the character's hit points
 	 */
 	public int getHitPoints() {
 		return hitPoints;
 	}
 
-	/**
-	 * @param hitPoints the hitPoints to set
+	/**Sets the character's hit points.
+	 * 
+	 * @param hitPoints, the character's hit points
 	 */
 	public void setHitPoints(int hitPoints) {
 		this.hitPoints = hitPoints;
 	}
 
-	/**
-	 * @return the currentHitPoints
+	/**Returns the character's current hit points.
+	 * 
+	 * @return currentHitPoints, the character's current hit points
 	 */
 	public int getCurrentHitPoints() {
 		return currentHitPoints;
 	}
 
-	/**
-	 * @param currentHitPoints the currentHitPoints to set
+	/**Reduces the character's current hit points if they take damage.
+	 * 
+	 * @param change, the amount of damage the character takes
 	 */
 	public void reduceCurrentHitPoints(int change) {
 		currentHitPoints = currentHitPoints - change;
 	}
 	
-	/**
-	 * @param currentHitPoints the currentHitPoints to set
+	/**Restores the character's current hit points if they are healed. 
+	 * A character cannot have more current hit points than their max
+	 * hit points. 
+	 * 
+	 * @param change, the amount of health the character gains back
 	 */
 	public void addCurrentHitPoints(int change) {
-		currentHitPoints = currentHitPoints + change;
+		if (currentHitPoints + change > hitPoints) {
+			currentHitPoints = hitPoints;
+		} else {
+			currentHitPoints = currentHitPoints + change;
+		}
 	}
 
-	/**
-	 * @return the strength
+	/**Returns the character's strength.
+	 * 
+	 * @return strength, the character's strength
 	 */
 	public int getStrength() {
 		return strength;
 	}
 
-	/**
-	 * @param strength the strength to set
+	/**Sets the character's strength.
+	 * 
+	 * @param strength, the character's strength
 	 */
 	public void setStrength(int strength) {
 		this.strength = strength;
 	}
 	
-	/**
-	 * @return the strength
+	/**Returns the character's initiative.
+	 * 
+	 * @return initiative, the character's initiative
 	 */
 	public int getInitiative() {
 		return initiative;
 	}
 
-	/**
-	 * @param strength the strength to set
+	/**Sets the character's initiative.
+	 * 
+	 * @param initiative, the character's initiative
 	 */
 	public void setInitiative(int initiative) {
 		this.initiative = initiative + initiativeBonus;
-	}
-	
-	/**
-	 * @return the strength
-	 */
-	public String getWeapon() {
-		return weapon;
-	}
-	
-	public int getWeaponDice(String weaponType) {
-		if (weaponType.equals("dagger") || weaponType.equals("knife")) {
-			return 4;
-		} else if (weaponType.equals("short sword") || weaponType.equals("short spear") 
-				|| weaponType.equals("axe")) {
-			return 6;
-		} else if (weaponType.equals("long sword") || weaponType.equals("long spear") || weaponType.equals("battle axe")) {
-			return 8;
-		}
-		else {
-			return 0;
-		}
-	}
-
-	/**
-	 * @param strength the strength to set
-	 */
-	public void setWeapon(int initiative) {
-		initiative = initiative + initiativeBonus;
 	}
 
 }
