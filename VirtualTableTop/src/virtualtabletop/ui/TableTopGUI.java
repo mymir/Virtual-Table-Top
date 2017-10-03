@@ -24,12 +24,11 @@ import virtualtabletop.directory.CharacterDirectory;
  */
 public class TableTopGUI extends JFrame implements ActionListener{
 	//GUI set-up
-	private static final int WINDOW_WIDTH = 550;
+	private static final int WINDOW_WIDTH = 500;
 	private static final  int WINDOW_HEIGHT = 300;
 	private static JPanel panel;
 	//functionality
 	private static JButton attack;
-	private static JButton rollInitiative;
 	private static JComboBox target;
 	private static JTextArea characters; 
 	private static JLabel init;
@@ -40,6 +39,7 @@ public class TableTopGUI extends JFrame implements ActionListener{
 	private Character currentPlayer;
 	private Character currentTarget;
 	private boolean targetSelected = false;
+	private boolean hasRolledInitiative = false;
 
 	/**Sets up the GUI's components and adds them to the pane.
 	 * 
@@ -51,16 +51,12 @@ public class TableTopGUI extends JFrame implements ActionListener{
 		panel.setVisible(true);
 		
 		attack = new JButton();
-		attack.setText("Attack");
+		attack.setText("Roll Initiative");
+		attack.addActionListener(this);
 		attack.setVisible(true);
 		
-		rollInitiative = new JButton();
-		rollInitiative.setText("Roll Initiative");
-		rollInitiative.addActionListener(this);
-		rollInitiative.setVisible(true);
-		
 		init = new JLabel(); 
-		init.setText("--");
+		init.setText("Initiavtive: --");
 		
 		target = new JComboBox();
 		try {
@@ -88,7 +84,6 @@ public class TableTopGUI extends JFrame implements ActionListener{
 		target.setVisible(true);
 		//add components
 		panel.add(attack);
-		panel.add(rollInitiative);
 		panel.add(init);
 		panel.add(target);
 		panel.add(characters);
@@ -108,15 +103,19 @@ public class TableTopGUI extends JFrame implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == rollInitiative) {
-			Dice die = new Dice(20); 
-			int roll = die.roll();
-			init.setText(Integer.toString(roll));
-		} else if (e.getSource() == attack) {
-			if (targetSelected) {
-				//attack
+		if (e.getSource() == attack) {
+			if (!hasRolledInitiative) {
+				Dice die = new Dice(20); 
+				int roll = die.roll();
+				init.setText("Initiavtive: " + Integer.toString(roll));
+				attack.setText("Attack");
+				hasRolledInitiative = true;
 			} else {
-				//pop up saying "No target selected!"
+				if (targetSelected) {
+					//attack
+				} else {
+					//pop up saying "No target selected!"
+				}
 			}
 		}
 
