@@ -23,6 +23,7 @@ import virtualtabletop.directory.CharacterDirectory;
  *
  */
 public class TableTopGUI extends JFrame implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	//GUI set-up
 	private static final int WINDOW_WIDTH = 500;
 	private static final  int WINDOW_HEIGHT = 300;
